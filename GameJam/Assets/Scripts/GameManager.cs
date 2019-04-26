@@ -17,6 +17,9 @@ public class GameManager : MonoBehaviour
     public GameObject selectedShip;
     public Camera cam;
 
+    public GameObject Player1UI;
+    public GameObject Player2UI;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -59,9 +62,13 @@ public class GameManager : MonoBehaviour
         {
             case playerID.player1:
                 currentPlayer = playerID.player2;
+                Player1UI.SetActive(false);
+                Player2UI.SetActive(true);
                 break;
             case playerID.player2:
                 currentPlayer = playerID.player1;
+                Player1UI.SetActive(true);
+                Player2UI.SetActive(false);
                 break;
             default:
                 break;

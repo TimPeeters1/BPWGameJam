@@ -14,12 +14,15 @@ public class TurnbasedSpaceship : MonoBehaviour
 
     [Space]
     public int shipHealth;
+    public int shipDamage;
+    [SerializeField] bool isFighter;
 
     [Space]
     public bool isSelected;
 
     [Space]
     [SerializeField] GameObject selectionUI;
+    [SerializeField] GameObject ExplosionEffect;
 
     GameManager mgr;
     NavMeshAgent agent;
@@ -50,6 +53,11 @@ public class TurnbasedSpaceship : MonoBehaviour
         {
             selectionUI.SetActive(false);
         }
+
+        if(shipHealth <= 0)
+        {
+            Die();
+        }
     }
 
     void DoMove()
@@ -74,6 +82,26 @@ public class TurnbasedSpaceship : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //if(other.gameObject.tag)
+        if(other.gameObject.tag == "Spaceship" && isFighter)
+        {
+            other.gameObject.GetComponent<TurnbasedSpaceship>().DoDamage(shipDamage);
+            if (isFighter)
+            {
+                shipHealth -= shipDamage;
+            }
+        }
+    }
+
+    public void DoDamage(int damage)
+    {
+        shipHealth -= damage;
+        
+        //Debug.Log("Damage");
+    }
+
+    void Die()
+    {
+        //GameObject explosion = Instantiate(ExplosionEffect, transform.position, transform.rotation);
+        Destroy(this.gameObject);
     }
 }
