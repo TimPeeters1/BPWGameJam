@@ -4,12 +4,18 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] int currentPlayer;
+    public enum playerID
+    {
+        player1,
+        player2
+    }
+
+    public playerID currentPlayer;
 
     bool doingTurn;
 
     public GameObject selectedShip;
-    Camera cam;
+    public Camera cam;
 
     // Start is called before the first frame update
     void Start()
@@ -20,14 +26,50 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        SelectShip();
     }
 
     void SelectShip()
     {
         RaycastHit hit;
-        Ray ray = GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
+        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+        Debug.DrawRay(ray.origin, ray.direction, Color.red);
 
+        if (Physics.Raycast(ray, out hit))
+        {
+            if (Input.GetKeyDown(KeyCode.Mouse0) && hit.collider.tag == "Spaceship" && !doingTurn && hit.collider.GetComponent<TurnbasedSpaceship>().playerID == currentPlayer)
+            {
+                hit.collider.GetComponent<TurnbasedSpaceship>().isSelected = true;
+                selectedShip = hit.collider.gameObject;
+                doingTurn = true;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Mouse0) && hit.collider.tag != "Spaceship" && doingTurn)
+            {
+                selectedShip.GetComponent<TurnbasedSpaceship>().isSelected = false;
+                selectedShip = null;
+                doingTurn = false;
+            }
+        }
+    }
+
+    public void doTurn()
+    {
+        switch (currentPlayer)
+        {
+            case playerID.player1:
+                currentPlayer = playerID.player2;
+                break;
+            case playerID.player2:
+                currentPlayer = playerID.player1;
+                break;
+            default:
+                break;
+        }
+
+        selectedShip.GetComponent<TurnbasedSpaceship>().isSelected = false;
+        selectedShip = null;
+        doingTurn = false;
 
     }
 
