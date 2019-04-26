@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
     void SelectShip()
     {
         RaycastHit hit;
-        Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+        Ray ray = GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
 
 
     }
