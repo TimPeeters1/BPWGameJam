@@ -61,14 +61,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfa86d4288d107d43894ffc5eecf6394, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerID: 0
+  playerID: 1
   moveRange: 100
   shipHealth: 100
   shipDamage: 50
   isFighter: 1
   isSelected: 0
   selectionUI: {fileID: 1439355970783413378}
-  ExplosionEffect: {fileID: 0}
+  ExplosionEffect: {fileID: 6482561612897541507, guid: 651a85dec96407048b8c3764944a2523,
+    type: 3}
   Distance: 25
 --- !u!195 &7894096842524850843
 NavMeshAgent:

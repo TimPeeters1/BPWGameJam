@@ -142,7 +142,8 @@ MonoBehaviour:
   isFighter: 1
   isSelected: 0
   selectionUI: {fileID: 8625534508838025506}
-  ExplosionEffect: {fileID: 0}
+  ExplosionEffect: {fileID: 2643313765038979320, guid: b3f7f8fc56f8c7b45b56b6a4486fd84e,
+    type: 3}
   Distance: 25
 --- !u!195 &702812292729931579
 NavMeshAgent:

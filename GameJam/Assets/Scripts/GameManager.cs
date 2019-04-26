@@ -24,6 +24,9 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+
+        Player1UI.SetActive(true);
+        Player2UI.SetActive(false);
     }
 
     // Update is called once per frame

@@ -101,7 +101,7 @@ public class TurnbasedSpaceship : MonoBehaviour
 
     void Die()
     {
-        //GameObject explosion = Instantiate(ExplosionEffect, transform.position, transform.rotation);
+        GameObject explosion = Instantiate(ExplosionEffect, transform.position, transform.rotation);
         Destroy(this.gameObject);
     }
 }
